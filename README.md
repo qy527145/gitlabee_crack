@@ -10,8 +10,8 @@ rm -rf $GITLAB_HOME
 mkdir -p $GITLAB_HOME
 sh deploy_gitlabee.sh
 ```
-## 等待服务启动后，访问http://127.0.0.1，账号root，密码使用下面命令获取
+## 等待服务启动后，访问[首页](http://127.0.0.1)，账号root，密码使用下面命令获取
 ```
 cat $GITLAB_HOME/config/initial_root_password
 ```
-## 随后进入http://127.0.0.1/admin/application_settings/general上传GitLabEE.gitlab-license激活即可
+## 随后进入[管理员设置](http://127.0.0.1/admin/application_settings/general)上传GitLabEE.gitlab-license激活即可
