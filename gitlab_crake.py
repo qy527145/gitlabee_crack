@@ -81,8 +81,8 @@ class License:
 
 if __name__ == '__main__':
     # 生成
-    # License().generate_license(license_data)
-    License(rsa_key=RSA.import_key(open('rsa.key').read())).generate_license(license_data)
+    private_key = RSA.import_key(open('rsa.key').read()) if os.path.exists('rsa.key') else None
+    License(rsa_key=private_key).generate_license(license_data)
     # 解析
     obj = License(rsa_key=RSA.import_key(open('.license_encryption_key.pub').read()))
     with open('GitLabEE.gitlab-license') as f:
