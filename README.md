@@ -1,7 +1,7 @@
 ## 运行python脚本，生成GitLabEE.gitlab-license等认证相关文件
 ```
 pip install -r requirements.txt
-python gitlab_crake.py
+python gitlab_crack.py
 ```
 ## 部署gitlab-ee，等待端口启动
 ```
