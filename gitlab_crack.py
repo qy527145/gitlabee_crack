@@ -45,7 +45,7 @@ class License:
         encrypt_data = AES.new(aes_key, AES.MODE_CBC, aes_iv).encrypt(license_plaintext)
         pad = rsa_key.size_in_bytes() - 19
         encrypt_key = pow(bytes_to_long(bytes.fromhex(f'0001{"ff" * pad}00{aes_key.hex()}')), rsa_key.d, rsa_key.n)
-        encrypt_key = encrypt_key.to_bytes(1 + encrypt_key.bit_length() // 8)
+        encrypt_key = long_to_bytes(encrypt_key)
         encrypt_license = {
             'data': base64.b64encode(encrypt_data).decode(),
             'key': base64.b64encode(encrypt_key).decode(),
@@ -87,3 +87,4 @@ if __name__ == '__main__':
     obj = License(rsa_key=RSA.import_key(open('.license_encryption_key.pub').read()))
     with open('GitLabEE.gitlab-license') as f:
         obj.parse_license(f.read())
+
