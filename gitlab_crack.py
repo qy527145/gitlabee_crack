@@ -7,25 +7,29 @@ from Crypto.PublicKey import RSA
 from Crypto.Util.number import bytes_to_long, long_to_bytes
 
 license_data = {
-    'version': 1,
-    'licensee': {
-        'Name': 'null',
-        'Company': 'null',
-        'Email': 'null@null.com'
+    "version": 1,
+    "licensee": {
+        "Name": "null",
+        "Company": "null",
+        "Email": "null@null.com"
     },
-    'issued_at': '2023-01-01',
-    'expires_at': '2100-12-31',
-    'notify_admins_at': '2100-12-01',
-    'notify_users_at': '2100-12-01',
-    'block_changes_at': '2100-12-10',
-    'cloud_licensing_enabled': False,
-    'offline_cloud_licensing_enabled': False,
-    'auto_renew_enabled': False,
-    'seat_reconciliation_enabled': False,
-    'operational_metrics_enabled': False,
-    'generated_from_customers_dot': False,
-    'restrictions': {
-        'active_user_count': 99999
+    "issued_at": "2026-01-01",
+    "expires_at": "2100-12-31",
+    "notify_admins_at": "2100-12-01",
+    "notify_users_at": "2100-12-01",
+    "block_changes_at": "2100-12-10",
+    "cloud_licensing_enabled": False,
+    "offline_cloud_licensing_enabled": False,
+    "auto_renew_enabled": False,
+    "seat_reconciliation_enabled": False,
+    "operational_metrics_enabled": False,
+    "contract_overages_allowed": True,
+    "generated_from_customers_dot": False,
+    "generated_from_cancellation": False,
+    "temporary_extension": False,
+    "restrictions": {
+        "active_user_count": 10000,
+        "plan": "ultimate"
     }
 }
 
@@ -87,4 +91,5 @@ if __name__ == '__main__':
     obj = License(rsa_key=RSA.import_key(open('.license_encryption_key.pub').read()))
     with open('GitLabEE.gitlab-license') as f:
         obj.parse_license(f.read())
+
 
