@@ -15,3 +15,15 @@ sh deploy_gitlabee.sh
 cat $GITLAB_HOME/config/initial_root_password
 ```
 ## 随后进入[管理员设置](http://127.0.0.1/admin/application_settings/general)上传GitLabEE.gitlab-license激活即可
+
+## 全流程激活示例
+```bash
+docker pull docker.1ms.run/gitlab/gitlab-ee:17.11.7-ee.0
+docker run -d -p 5080:80 --name gitlab docker.1ms.run/gitlab/gitlab-ee:17.11.7-ee.0
+docker exec -it gitlab cat /etc/gitlab/initial_root_password
+uv run gitlab_crack.py
+docker cp .license_encryption_key.pub gitlab:/opt/gitlab/embedded/service/gitlab-rails/.license_encryption_key.pub
+docker exec -it gitlab gitlab-ctl restart
+docker stop gitlab
+docker rm gitlab
+```
